@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <select name="f-type" id="f-type" onchange="type(this.value)">
+        <option value="Arial">Arial</option>
+        <option value="'Times New Roman'">Times New Roman</option>
+        <option value="Georgia">Georgia</option>
+
+    </select>
+
+    <input type="number" id="size" onchange="size(this.value)">
+
+    <input type="checkbox" id="italic">italic
+    <input type="checkbox" id="bold">bold
+    <input type="checkbox" id="underline">underline
+
+
+
+
+
+    <br>
+
+
+
+    <div id="editor" placeholder="Type..." contenteditable="true"
+        style="border: 1px solid #ccc; padding: 10px; width: 300px; height: 150px;">
+
+    </div>
+
+
+
+
+
+    <script>
+
+        let text_area = document.getElementById("editor");
+
+
+
+        function type(val) {
+
+            // switch (val) {
+            //     case "Arial":
+            //         text_area.style.fontFamily = "Arial, Helvetica, sans-serif";
+            //         break;
+            //     case "Times":
+            //         text_area.style.fontFamily = "'Times New Roman', Times, serif";
+            //         break;
+            //     case "Georgia":
+            //         text_area.style.fontFamily = "Georgia, 'Times New Roman', Times, serif";
+            //         break;
+
+            // }
+
+            text_area.style.fontFamily = val;
+
+
+
+
+        }
+
+
+        function size(val) {
+
+            text_area.style.fontSize = val + "px";
+
+        }
+
+
+
+        let italic = document.getElementById("italic");
+
+        italic.oninput = () => {
+
+            text_area.style.fontStyle = italic.checked ? "italic" : "normal";
+
+        }
+
+
+        let boldd = document.getElementById("bold");
+
+        boldd.oninput = () => {
+
+            text_area.style.fontWeight = boldd.checked ? "bold" : "normal";
+
+        }
+
+
+        let underlinee = document.getElementById("underline");
+
+        underlinee.oninput = () => {
+
+            text_area.style.textDecoration = underlinee.checked ? "underline" : "none";
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

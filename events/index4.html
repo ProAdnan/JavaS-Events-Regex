@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #content {
+            background-color: rgb(200, 200, 200);
+
+            border: 1px solid black;
+
+            height: fit-content;
+        }
+
+        #adnan-p,
+        #lena-p,
+        #rihab-p {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="content">
+
+
+        <h1>who is Adnan?</h1>
+
+
+        <a href="#" id="adnan-link" onclick="show(0)">show</a>
+
+
+        <p id="adnan-p">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nostrum facilis cum
+            distinctio tempora vitae delectus eligendi animi odit. Accusantium dicta perferendis veritatis fugit placeat
+            iste obcaecati fugiat consequatur ullam.
+
+
+            <a href="#" id="adnan-hide" onclick="hide(0)">hide</a>
+
+
+        </p>
+    </div>
+    <div id="content">
+
+
+        <h1>who is lena?</h1>
+
+
+        <a href="#" id="lena-link" onclick="show(1)">show</a>
+
+
+        <p id="lena-p">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam reprehenderit saepe
+            accusantium possimus commodi fugit, suscipit porro praesentium perspiciatis, esse sunt ad aspernatur magnam
+            voluptate id? Ad autem incidunt quam?
+
+
+            <a href="#" id="lena-hide" onclick="hide(1)">hide</a>
+
+
+        </p>
+    </div>
+    <div id="content">
+
+
+        <h1>who is rihab?</h1>
+
+
+        <a href="#" id="rihab-link" onclick="show(2)">show</a>
+        <p id="rihab-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloremque vel inventore nisi,
+            asperiores accusamus, repellendus tempore repudiandae officiis illum enim assumenda reiciendis quisquam
+            aliquam exercitationem ipsam corporis rerum, similique facere!
+
+
+            <a href="#" id="rihab-hide" onclick="hide(2)">hide</a>
+
+        </p>
+    </div>
+
+
+
+
+    <script>
+
+
+
+
+        function show(val) {
+
+
+            switch (val) {
+
+                case 0:
+                    document.getElementById("adnan-p").style.display = "block";
+                    break;
+                case 1:
+                    document.getElementById("lena-p").style.display = "block";
+                    break;
+
+                case 2:
+                    document.getElementById("rihab-p").style.display = "block";
+                    break;
+
+            }
+
+        }
+
+
+        function hide(val) {
+
+
+            switch (val) {
+
+                case 0:
+                    document.getElementById("adnan-p").style.display = "none";
+                    break;
+                case 1:
+                    document.getElementById("lena-p").style.display = "none";
+                    break;
+
+                case 2:
+                    document.getElementById("rihab-p").style.display = "none";
+                    break;
+
+            }
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

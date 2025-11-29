@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <form action="">
+
+
+        <label for="pass">password(min 6 characters)</label>
+        <input type="password" name="pass" id="pass" oninput="check()">
+        <p style="display: none; color: red;" id="err_msg1"></p>
+        <br>
+        <label for="pass">Repeat password</label>
+        <input type="password" name="pass2" id="pass2" oninput="check()">
+        <p style="display: none; color: red;" id="err_msg2"></p>
+
+
+        <input type="submit" id="submit" style="display: none;">
+
+    </form>
+
+
+
+    <script>
+
+
+        let err_msg1 = document.getElementById("err_msg1");
+        let err_msg2 = document.getElementById("err_msg2");
+
+
+
+        function check() {
+
+            let pass = document.getElementById("pass").value;
+            let pass2 = document.getElementById("pass2").value;
+
+
+
+            if (pass.length < 6) {
+                err_msg1.innerHTML = "Too Short!";
+                err_msg1.style.display = "block";
+            } else {
+                err_msg1.style.display = "none";
+
+            }
+
+
+            if (pass !== pass2) {
+                err_msg2.innerHTML = "the two passwords dont match!";
+                err_msg2.style.display = "block";
+            } else {
+                err_msg2.style.display = "none";
+                document.getElementById("submit").style.display = "block";
+
+            }
+
+
+
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+
+#big-div{
+    background-color: white;
+    padding:10px;
+}
+
+</style>
+
+
+</head>
+<body>
+
+    <div id="big-div">
+
+
+        <p id="text">Hello World!</p>
+
+
+    </div>
+
+
+    <script>
+
+        let div=document.getElementById("big-div");
+        let text=document.getElementById("text");
+
+        div.onmouseover = () => {
+
+            div.style.backgroundColor="yellow";
+            text.style.fontWeight="bold";
+
+        };
+
+
+
+    </script>
+    
+</body>
+</html>
