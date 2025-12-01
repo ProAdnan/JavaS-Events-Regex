@@ -1,11 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+    <style>
+        form {
+            border: 2px solid black;
+            padding: 3px;
+            justify-content: center;
+            display: block;
+        }
+
+        form input {
+            display: block;
+            margin-bottom: 3px;
+        }
+    </style>
+
 </head>
+
 <body>
-    
+
+
+    <form id="form" action="">
+
+        <label for="fn">First Name:</label>
+        <input type="text" name="fn" id="fn" onchange="check(this.value)">
+
+
+
+        <label for="ln">Last Name:</label>
+        <input type="text" name="ln" id="ln" onchange="check(this.value)">
+
+
+        <label for="bd">Birth Date:</label>
+        <input type="date" name="bd" id="bd" onchange="checkDate(this.val)">
+
+
+        <label for="em">Email:</label>
+        <input type="email" name="em" id="em" onchange="checkEmail(this.value)">
+
+        <label for="em2">Retype Email:</label>
+        <input type="email" name="em2" id="em2">
+
+
+
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass" onchange="checkPass(this.value)">
+
+
+        <label for="pass2">Retype Password:</label>
+        <input type="password" name="pass2" id="pass2" oninput="pass2(this.value)">
+
+        <label for="tel">phone:</label>
+        <input type="tel" name="tel" id="tel" onchange="checkPhone(this.value)">
+
+        <p id="err" style="color:red;"></p>
+
+        <input type="submit" name="subBtn" id="subBtn" value="Submit">
+
+
+
+
+
+    </form>
+
+    <script>
+        let err = document.getElementById("err");
+
+        let fn = document.getElementById("fn");
+        let ln = document.getElementById("ln");
+
+
+
+
+        function check(val) {
+            let p1 = /^[A-Za-z]+$/;
+
+            if (!p1.test(val)) {
+
+                err.innerHTML = "names letters only!"
+
+            } else {
+                err.innerHTML = ""
+            }
+
+            if (!p1.test(val)) {
+
+                err.innerHTML = "names letters only!"
+
+            } else {
+                err.innerHTML = ""
+            }
+
+        }
+
+
+        function checkDate(val) {
+            let p = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/;
+
+            if (!p.test(val)) {
+                err.innerHTML = "Date must be in right formatt";
+
+            } else {
+                err.innerHTML = "";
+            }
+
+
+        }
+
+        function checkEmail(val) {
+            let p = /^[\w.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+
+            try {
+
+                if (!p.test(val)) {
+                    throw "the email must be in format like:xxx@gmail.com";
+                } else {
+                    err.innerHTML = "";
+                }
+            } catch (err_msg) {
+
+                err.innerHTML = err_msg;
+
+            }
+
+
+        }
+
+
+
+        email2.oninput = () => {
+            let email2 = document.getElementById("em2").value;
+            let em = document.getElementById("em").value;
+
+            if (email2 != em) {
+                err.innerHTML = "email must match!";
+            } else {
+                err.innerHTML = "";
+
+            }
+
+        }
+
+
+
+        function checkPass(val) {
+
+            if(val <8 && val >32){
+
+                err.innerHTML="password must be between 8 and 32";
+            }else{
+                err.innerHTML="";
+
+            }
+
+
+            let p = /^(?=.*\d.*\d)(?=.*[^A-Za-z0-9])[A-Z][A-Za-z0-9!@#$%^&*()_+\-={}[\]|;:'",.<>/?]{7,31}$/;
+
+
+            if (!p.test(val)) {
+
+                err.innerHTML = "Password must:start with a capital letter,two numbers,special character!";
+            } else {
+                err.innerHTML = "";
+            }
+
+        }
+
+
+        function pass2(val) {
+            let pass = document.getElementById("pass");
+
+
+            if (val != pass) {
+                err.innerHTML = "Password must match!";
+
+            } else {
+                err.innerHTML = "";
+            }
+        }
+
+
+
+
+
+        function checkPhone(val){
+            let p = /^\d{10}$/;
+
+
+            if(!p.test(val)){
+                err.innerHTML="Phone must be 10 numbers!";
+            }else{
+                err.innerHTML="";
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
 </body>
+
 </html>

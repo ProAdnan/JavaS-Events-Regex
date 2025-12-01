@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+
+        #cards {
+
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+
+        }
+
+        .card {
+
+            width: 260px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .card h3 {
+
+            margin: 0;
+            margin-bottom: 8px;
+            color: #007bff;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <form id="projectForm">
+
+        <label>Subject:</label>
+
+        <input type="text" id="subject">
+
+        <label>Description:</label>
+
+        <textarea id="description"></textarea>
+
+        <label>User Types:</label>
+
+        <input type="text" id="usertypes">
+
+        <label>Technology Used:</label>
+
+        <input type="text" id="tech">
+
+        <button type="button" onclick="save_in_session()">Submit</button>
+
+
+    </form>
+
+    <div id="cards"></div>
+
+
+    <script>
+
+
+        function save_in_session() {
+
+            let subject = document.getElementById("subject").value;
+
+            let description = document.getElementById("description").value;
+
+            let userTypes = document.getElementById("usertypes").value;
+
+            let tech = document.getElementById("tech").value;
+
+
+            let project = {
+                subject,
+                description,
+                userTypes,
+                tech
+            };
+
+            sessionStorage.setItem("projectInfo", JSON.stringify(project));
+
+            //or we can do
+
+            //sessionStorage.setItem("subject", subject);
+            //sessionStorage.setItem("description", description);
+            //sessionStorage.setItem("userTypes", userTypes);
+            //sessionStorage.setItem("tech", tech);
+
+
+
+            print_result();
+        }
+
+        function print_result() {
+
+            let data = sessionStorage.getItem("projectInfo");
+
+            if (!data) return;
+
+            let obj = JSON.parse(data);
+
+            let cardsDiv = document.getElementById("cards");
+            cardsDiv.innerHTML =
+                `
+                <div class="card">
+                    <h3>${obj.subject}</h3>
+
+                    <p><strong>Description:</strong> ${obj.description}</p>
+
+                    <p><strong>User Types:</strong> ${obj.userTypes}</p>
+
+                    <p><strong>Technology:</strong> ${obj.tech}</p>
+                </div>
+            `;
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

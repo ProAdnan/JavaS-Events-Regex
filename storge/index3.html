@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <h2>Registration</h2>
+
+    <label>First Name:</label>
+    <input type="text" id="firstName"><br><br>
+
+    <label>Last Name:</label>
+    <input type="text" id="lastName"><br><br>
+
+    <label>Email:</label>
+    <input type="email" id="regEmail"><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="regPass"><br><br>
+
+    <button onclick="register()">Register</button>
+
+    <hr>
+
+    <h2>Login Form</h2>
+
+    <label>Email:</label>
+    <input type="email" id="loginEmail"><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="loginPass"><br><br>
+
+    <button onclick="login()">Login</button>
+
+    <p id="message"></p>
+
+    <script>
+
+        function register() {
+
+            let user = {
+
+                firstName: document.getElementById("firstName").value,
+
+                lastName: document.getElementById("lastName").value,
+
+                email: document.getElementById("regEmail").value,
+
+                password: document.getElementById("regPass").value
+
+            };
+
+            localStorage.setItem("userData", JSON.stringify(user));
+
+        }
+
+
+        function login() {
+
+            let savedUser = localStorage.getItem("userData");
+
+            if (!savedUser) {
+
+                document.getElementById("message").innerText = "No registered user found.";
+                return;
+
+            }
+
+            let user = JSON.parse(savedUser);
+
+            let email = document.getElementById("loginEmail").value;
+
+            let pass = document.getElementById("loginPass").value;
+
+            if (email === user.email && pass === user.password) {
+
+                document.getElementById("message").innerText = "Login successful!";
+
+            } else {
+
+                document.getElementById("message").innerText = "Incorrect email or password.";
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>

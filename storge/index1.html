@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+
+            width: 300px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f7f7f7;
+            margin-top: 20px;
+
+        }
+
+        .card h2 {
+
+            margin: 0 0 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>my data</h1>
+
+    <form id="myForm">
+
+        <label>name:</label><br>
+        <input type="text" id="name">
+        
+        
+        <br><br>
+
+        <label>age:</label><br>
+        <input type="number" id="age">
+        
+        
+        <br><br>
+
+        <label>gender:</label>
+        
+        <br>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+
+
+        <br>
+        <br>
+
+        <label>description:</label>
+        <br>
+
+        <textarea id="desc" rows="5"></textarea>
+        
+        
+        
+        <br>
+        <br>
+
+        <label> major & university:</label><br>
+        <input type="text" id="major">
+        
+        
+        <br>
+        <br>
+
+        <label>Preferred Programming Languages:</label><br>
+        <input type="checkbox" value="JavaScript" class="langs"> JavaScript<br>
+        <input type="checkbox" value="Python" class="langs"> Python<br>
+        <input type="checkbox" value="Java" class="langs"> Java<br>
+        <input type="checkbox" value="C#" class="langs"> C#<br><br>
+
+        <button type="button" id="sunMit">Submit</button>
+
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+
+        let btn = document.getElementById("sunMit");
+        let result = document.getElementById("result");
+
+        btn.onclick = function () {
+
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let desc = document.getElementById("desc").value;
+            let major = document.getElementById("major").value;
+
+            
+            let gender = "";
+            let genderInputs = document.getElementsByName("gender");
+
+            for (let g of genderInputs) {
+
+                if (g.checked) {
+                    gender = g.value;
+                }
+
+            }
+
+            
+            let langs = [];
+
+            let boxes = document.getElementsByClassName("langs");
+
+            for (let box of boxes) {
+
+                if (box.checked) {
+                    langs.push(box.value);
+                }
+
+            }
+
+            
+            let data = {
+                name: name,
+                age: age,
+                gender: gender,
+                desc: desc,
+                major: major,
+                langs: langs
+            };
+
+            //or
+            //localStorage.setItem("name", name);
+            //localStorage.setItem("age", age);
+            //localStorage.setItem("gender", gender);
+            //localStorage.setItem("major", major);
+            //localStorage.setItem("langs", langs);
+
+
+            
+            localStorage.setItem("personalData", JSON.stringify(data));
+
+
+
+            
+            showCard();
+        };
+
+
+        function showCard() {
+
+            let stored = localStorage.getItem("personalData");
+
+            if (stored) {
+
+                let info = JSON.parse(stored);
+
+                result.innerHTML = `
+
+                    <div class="card">
+                        
+                        <h2>${info.name}</h2>
+
+                        <p><strong> Age:</strong> ${info.age}</p>
+
+                        <p><strong> Gender:</strong> ${info.gender}</p>
+
+                        <p><strong> Description:</strong> ${info.desc}</p>
+
+                        <p><strong> Major & University:</strong> ${info.major}</p>
+
+                        <p><strong> Languages:</strong> ${info.langs.join(", ")}</p>
+                    </div>
+
+
+                `;
+            }
+        }
+
+        // show card on page load if data exists
+        showCard();
+
+    </script>
+
+</body>
+</html>

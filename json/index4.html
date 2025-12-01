@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+#table td{
+    border: 1px solid black;
+}
+
+    </style>
+</head>
+
+<body>
+
+
+
+    <form action="" id="form">
+
+        Name:<input type="text" id="name">
+        Email: <input type="email" id="email">
+        Mobile: <input type="tel" name="tel" id="tel">
+
+        <input type="button" value="Click on me to print" id="submit" onclick="show()">
+
+
+    </form>
+
+
+    <p id="nameO"></p>
+    <p id="emailO"></p>
+    <p id="telO"></p>
+
+    <hr>
+
+    <table id="table" style="display: none;border:1px solid black;">
+        <td id="table-name"></td>
+        <td id="table-email"></td>
+        <td id="table-tel"></td>  
+    </table>
+
+
+
+    <script>
+
+        let nameO = document.getElementById("nameO");
+        let emailO = document.getElementById("emailO");
+        let telO = document.getElementById("telO");
+
+        nameO.style.backgroundColor = "green";
+        emailO.style.backgroundColor = "red";
+
+        telO.style.backgroundColor = "yellow";
+
+
+        function show() {
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let tel = document.getElementById("tel").value;
+
+
+
+
+            nameO.innerHTML = name;
+
+
+
+            emailO.innerHTML = email;
+
+
+            telO.innerHTML = tel;
+
+
+
+            let table=document.getElementById("table");
+            table.style.display="block";
+
+                    const node0 = document.createTextNode(name);
+                    const node1 = document.createTextNode(email);
+                    const node2 = document.createTextNode(tel);
+
+
+            document.getElementById("table-name").appendChild(node0);
+            document.getElementById("table-email").appendChild(node1);
+            document.getElementById("table-tel").appendChild(node2);
+
+
+
+            
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
