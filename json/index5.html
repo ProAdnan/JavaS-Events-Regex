@@ -8,16 +8,12 @@
 
     <style>
         * {
-
             max-width: 99.9%;
         }
 
         body {
-
             margin: 0;
             padding: 0;
-
-
             max-width: 100%;
         }
 
@@ -28,10 +24,10 @@
             border: 2px solid black;
             color: white;
             font-size: 50px;
+            display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-
         }
     </style>
 
@@ -39,96 +35,66 @@
 
 <body>
 
-
-
     <div id="big-div">
-
         Click to show table / Double click to hide table
-
     </div>
 
-
-    <div id="table-div">
-
-
-
-    </div>
-
-
-    <script src="jsonObject.json.txt"></script>
+    <div id="table-div"></div>
 
     <script>
-        let bigDiv = document.getElementById("big-div");
 
+        let bigDiv = document.getElementById("big-div");
         let container = document.getElementById("table-div");
 
-        let visible = false;
+        let visable = false;
 
         bigDiv.addEventListener("click", () => {
 
-            if (visible)
+            if (visable)
                 return;
 
-            // string → object
-            let data = JSON.parse(jsonObject).users;
+            fetch("jsonObject.json")
+                .then(r => r.json())
+                .then(data => {
 
-            let table = "<table border='1' style=\"width:100%;\">";
+                    const users = data[0].users;
 
+                    let table = `
+                    <table border="1" style="width:100%;text-align:center;">
+                        <tr>
+                            <th>firstName</th>
+                            <th>phone</th>
+                            <th>email</th>
+                        </tr>
+                    `;
 
-            table += "<tr>";
-            for (let key in data[0]) {
+                    users.forEach(u => {
+                        table += `
+                        <tr>
+                            <td>${u.firstName}</td>
+                            <td>${u.phone}</td>
+                            <td>${u.email}</td>
+                        </tr>`;
+                    });
 
-                if (key == "firstName" || key == "phone" || key == "email")
-                    table += `<th>${key}</th>`;
+                    table += "</table>";
 
+                    container.innerHTML = table;
+                    visable = true;
 
-            }
-            table += "</tr>";
+                });
 
-
-            data.forEach(item => {
-
-                table += "<tr>";
-
-                for (let key in item) {
-
-                    if (key == "firstName" || key == "phone" || key == "email") {
-
-                        // if value is an object → convert it to string
-                        if (typeof item[key] === "object") {
-
-                            table += `<td>${JSON.stringify(item[key])}</td>`;
-
-                        } else {
-
-                            table += `<td>${item[key]}</td>`;
-
-                        }
-                    }
-
-
-                }
-
-                table += "</tr>";
-
-            });
-
-            table += "</table>";
-
-            container.innerHTML = table;
-
-            visible = true;
         });
 
         bigDiv.addEventListener("dblclick", () => {
 
-            container.innerHTML = "";
-
-            visible = false;
+            if (!visable) {
+                
+             container.innerHTML=""; 
+               
+            }
 
         });
-
-
 
     </script>
 
